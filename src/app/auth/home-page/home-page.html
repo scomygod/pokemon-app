@@ -1,0 +1,42 @@
+<section class="p-8">
+  <h1 class="text-3xl font-bold mb-2 text-center">Pokémon API</h1>
+  <h2 class="text-lg text-center mb-6">Listado de Pokémon</h2>
+
+  <!-- Spinner de carga -->
+  @if (!pokemonsResource()) {
+    <div class="flex justify-center items-center h-64">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  }
+
+  <!-- Tabla de Pokémon -->
+  @if (pokemonsResource()) {
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pokemon of pokemonsResource()?.results ?? []; track pokemon.name) {
+            <tr>
+              <td>{{ pokemon.url.split('/').slice(-2, -1)[0] }}</td>
+              <td>{{ pokemon.name | titlecase }}</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-primary"
+                  (click)="viewDetails(pokemon)"
+                >
+                  Ver Detalle
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>
