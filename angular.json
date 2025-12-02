@@ -15,6 +15,7 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/pokemon-app",
             "assets": [
               {
                 "glob": "**/*",
@@ -39,7 +40,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/pokemon-app/"
             },
             "development": {
               "optimization": false,
