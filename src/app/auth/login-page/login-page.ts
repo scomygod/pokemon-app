@@ -1,7 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // necesario para @if
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 const USER = {
   email: 'usuario@ups.edu.ec',
@@ -12,14 +13,16 @@ const USER = {
   selector: 'app-login-page',
   standalone: true,
   templateUrl: './login-page.html',
-  imports: [ReactiveFormsModule, CommonModule], // Agregamos CommonModule
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
 })
 export class LoginPage {
 
   error = signal('');
   form: any;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private title: Title, private meta: Meta) {
+    this.title.setTitle('Iniciar sesión – Pokedex');
+    this.meta.updateTag({ name: 'description', content: 'Accede a tu cuenta para gestionar tu Pokédex.' });
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],

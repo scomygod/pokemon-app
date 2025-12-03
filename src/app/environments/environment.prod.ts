@@ -1,5 +1,4 @@
-// environment.development.ts
 export const environment = {
-  production: false,
-  apiUrl: 'https://thesimpsonsapi.com/api'
+  production: true,
+  apiUrl: 'https://pokeapi.co/api/v2/pokemon'
 };

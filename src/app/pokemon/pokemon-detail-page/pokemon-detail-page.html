@@ -1,1 +1,38 @@
-<p>pokemon-detail-page works!</p>,
+<section class="p-8">
+  @if (personaje.isLoading()) {
+  <div class="flex justify-center items-center h-64">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+  }
+
+  @if (personaje.hasValue()) {
+  <div class="card bg-base-100 shadow-xl p-6 max-w-4xl mx-auto">
+    <figure>
+      <img
+        *ngIf="id"
+[src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + id + '.png'"
+        [alt]="name"
+        class="w-48 rounded-lg"
+      />
+    </figure>
+
+    <div class="card-body">
+      <h2 class="card-title text-2xl font-bold">{{ name | titlecase }}</h2>
+      <p class="text-gray-600 mb-2">Tipos: {{ types }}</p>
+      <p class="text-gray-600 mb-2">Altura: {{ height }}</p>
+      <p class="text-gray-600 mb-2">Peso: {{ weight }}</p>
+      <div>
+        <h3 class="font-semibold">Información adicional:</h3>
+        <ul class="list-disc pl-6">
+          <li>ID: {{ id }}</li>
+          <li>Número de tipos: {{ numberOfTypes }}</li>
+        </ul>
+      </div>
+
+      <div class="mt-4">
+        <a routerLink="/home-page" class="btn btn-sm btn-secondary">Regresar</a>
+      </div>
+    </div>
+  </div>
+  }
+</section>
